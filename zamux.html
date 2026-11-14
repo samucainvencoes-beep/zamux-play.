@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111318">
+<title>ZAMUX PLAY — Jogos para descobrir</title>
+<style>
+:root{--bg:#111318;--panel:#191c23;--panel2:#20242d;--text:#f4f5f7;--muted:#9ba2af;--line:#2b303b;--accent:#9b83ff;--accent2:#7860e8;--green:#79d6a2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input{font:inherit}button{cursor:pointer}.app{max-width:1180px;margin:auto;padding:0 22px 60px}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.4px;font-size:20px}.brand-mark{width:34px;height:34px;border-radius:11px;background:var(--accent);display:grid;place-items:center;color:#171323;font-weight:900;font-size:18px}
+nav{display:flex;gap:7px}nav button,.quiet{border:0;background:transparent;color:var(--muted);padding:10px 13px;border-radius:9px}nav button.active,nav button:hover{background:var(--panel2);color:white}
+.header-right{display:flex;align-items:center;gap:10px}.profile{width:34px;height:34px;border-radius:50%;background:#303644;display:grid;place-items:center;color:#d9d4ff;font-weight:700}
+.hero{margin:30px 0 26px;padding:34px;border-radius:18px;background:linear-gradient(115deg,#29243c,#1b202b 58%,#202d37);border:1px solid #39344b;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:205px;overflow:hidden}
+.hero-copy{max-width:560px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.7px;color:#c2b5ff;font-weight:800}.hero h1{font-size:clamp(27px,4vw,42px);line-height:1.12;margin:10px 0}.hero p{color:#c1c4ce;margin:0 0 20px;max-width:480px}.primary{background:var(--accent);color:#171323;border:0;border-radius:9px;padding:11px 17px;font-weight:750}.primary:hover{background:#b0a0ff}.hero-art{width:210px;height:140px;flex:none;position:relative}.orb{position:absolute;width:115px;height:115px;border-radius:28px;background:linear-gradient(140deg,#b6a8ff,#7259d8);right:45px;top:8px;transform:rotate(14deg);box-shadow:0 18px 50px #09081066}.orb:after{content:"";position:absolute;width:45px;height:45px;border:9px solid #29243c;border-radius:50%;left:26px;top:26px}.orb2{position:absolute;width:72px;height:72px;border-radius:22px;background:#82cbb7;right:4px;bottom:0;transform:rotate(-15deg);border:8px solid #242838}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:26px 0 14px}.section-head h2{font-size:20px;margin:0}.muted{color:var(--muted)}.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}.search{background:var(--panel);border:1px solid var(--line);color:white;border-radius:9px;padding:11px 13px;min-width:min(100%,270px);outline:none}.search:focus{border-color:var(--accent)}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 12px;border-radius:30px;font-size:13px}.chip.active,.chip:hover{background:#302b45;color:#e6e0ff;border-color:#51476f}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.game-card{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden;min-width:0;transition:transform .16s,border-color .16s}.game-card:hover{transform:translateY(-3px);border-color:#55506b}.cover{height:155px;position:relative;display:grid;place-items:center;overflow:hidden}.cover:before,.cover:after{content:"";position:absolute;border-radius:50%;opacity:.65}.cover:before{width:190px;height:190px;border:1px solid #ffffff40;right:-35px;top:-70px}.cover:after{width:130px;height:130px;border:1px solid #ffffff30;left:-35px;bottom:-80px}.cover span{font-size:43px;font-weight:900;letter-spacing:-3px;color:#ffffffdd;text-shadow:0 4px 20px #0005;z-index:1}.cover.island{background:linear-gradient(135deg,#246c6a,#8cbf8b)}.cover.puzzle{background:linear-gradient(135deg,#51428c,#b18ed0)}.cover.race{background:linear-gradient(135deg,#9b4e46,#e2a46d)}.cover.uploaded{background:linear-gradient(135deg,#394c65,#7184a5)}
+.card-body{padding:14px}.card-title{display:flex;align-items:center;justify-content:space-between;gap:8px}.card-title h3{font-size:16px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag{font-size:11px;color:#c5bbff;background:#302b45;padding:4px 7px;border-radius:5px;white-space:nowrap}.card-body p{color:var(--muted);font-size:13px;margin:7px 0 13px;min-height:39px}.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}.size{font-size:12px;color:var(--muted)}.small-btn{border:1px solid #51476f;background:#302b45;color:#e7e2ff;border-radius:7px;padding:7px 11px;font-size:13px;font-weight:650}.small-btn:hover{background:#40375f}.small-btn:disabled{opacity:.55;cursor:default}
+.empty{grid-column:1/-1;border:1px dashed #3a3f4b;border-radius:12px;padding:35px;text-align:center;color:var(--muted)}
+.page{display:none}.page.active{display:block}.library-note{padding:13px 15px;background:#1d2927;border:1px solid #2e4941;color:#b9e7d0;border-radius:9px;margin:15px 0 20px;font-size:13px}
+.publish{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:23px;max-width:680px}.publish h2{margin-top:0}.drop{border:1px dashed #505767;border-radius:10px;padding:25px;text-align:center;margin:16px 0;color:var(--muted)}.drop input{display:block;margin:12px auto 0;max-width:100%}
+footer{border-top:1px solid var(--line);margin-top:50px;padding-top:20px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#f4f2ff;color:#201b31;padding:11px 16px;border-radius:9px;box-shadow:0 8px 30px #0007;z-index:10;display:none;font-weight:650;max-width:90%;text-align:center}
+@media(max-width:760px){.app{padding:0 15px 40px}header{height:auto;min-height:68px;flex-wrap:wrap;padding:12px 0}.brand{font-size:18px}nav{order:3;width:100%;overflow:auto}nav button{flex:1}.hero{padding:24px 20px;min-height:190px}.hero-art{width:115px;transform:scale(.8);transform-origin:center right;margin-right:-18px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cover{height:125px}.card-body{padding:11px}.card-body p{min-height:55px;font-size:12px}.section-head h2{font-size:18px}}
+@media(max-width:430px){.hero-art{display:none}.grid{grid-template-columns:1fr 1fr}.cover{height:112px}.card-title{align-items:flex-start;flex-direction:column;gap:4px}.card-body p{min-height:65px}.tools{align-items:stretch}.search{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="brand-mark">Z</div><span>ZAMUX PLAY</span></div>
+  <nav aria-label="Navegação">
+    <button class="active" data-page="store">Explorar</button>
+    <button data-page="library">Minha biblioteca</button>
+    <button data-page="publish">Publicar jogo</button>
+  </nav>
+  <div class="header-right"><span class="muted" style="font-size:12px">Olá, jogador</span><div class="profile">J</div></div>
+</header>
+
+<main>
+<section class="page active" id="store">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Seu próximo jogo começa aqui</div>
+      <h1>Descubra. Baixe. Jogue.</h1>
+      <p>Uma biblioteca de jogos independentes para conhecer e guardar no seu dispositivo.</p>
+      <button class="primary" onclick="document.getElementById('game-list').scrollIntoView({behavior:'smooth'})">Explorar jogos</button>
+    </div>
+    <div class="hero-art" aria-hidden="true"><div class="orb"></div><div class="orb2"></div></div>
+  </div>
+  <div class="section-head"><h2>Jogos em destaque</h2><span class="muted" id="game-count">3 jogos</span></div>
+  <div class="tools">
+    <input class="search" id="search" type="search" placeholder="Buscar um jogo..." aria-label="Buscar um jogo">
+    <div class="chips">
+      <button class="chip active" data-category="Todos">Todos</button>
+      <button class="chip" data-category="Aventura">Aventura</button>
+      <button class="chip" data-category="Puzzle">Puzzle</button>
+      <button class="chip" data-category="Corrida">Corrida</button>
+      <button class="chip" data-category="Outros">Outros</button>
+    </div>
+  </div>
+  <div class="grid" id="game-list"></div>
+</section>
+
+<section class="page" id="library">
+  <div class="section-head"><div><h2>Minha biblioteca</h2><div class="muted">Seus jogos ficam guardados neste dispositivo.</div></div></div>
+  <div class="library-note">Os jogos compatíveis podem abrir mesmo sem internet depois de baixados. O armazenamento depende do espaço disponível no navegador.</div>
+  <div class="grid" id="library-list"></div>
+</section>
+
+<section class="page" id="publish">
+  <div class="section-head"><div><h2>Publicar um jogo</h2><div class="muted">Adicione um jogo HTML5 criado por você.</div></div></div>
+  <div class="publish">
+    <h2>Enviar jogo HTML</h2>
+    <p class="muted">Esta primeira versão aceita arquivos .html. O jogo será salvo na biblioteca deste navegador para testes. A publicação para todos os usuários precisará de um servidor e análise de segurança.</p>
+    <label for="game-file"><strong>Arquivo do jogo</strong></label>
+    <div class="drop">Escolha um arquivo HTML do seu dispositivo
+      <input id="game-file" type="file" accept=".html,text/html">
+    </div>
+    <label for="game-name"><strong>Nome do jogo</strong></label>
+    <input id="game-name" class="search" style="width:100%;margin:8px 0 14px" placeholder="Ex.: Meu primeiro jogo">
+    <button class="primary" id="publish-btn">Adicionar à minha biblioteca</button>
+    <p class="muted" style="font-size:12px;margin-bottom:0">Envie apenas jogos que você criou ou tem autorização para distribuir.</p>
+  </div>
+</section>
+</main>
+<footer><span>© 2026 ZAMUX PLAY</span><span>Uma plataforma independente de jogos</span></footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const DB_NAME='zamux-play-db', STORE='games';
+const demoGames=[
+ {id:'island-survival',name:'Ilha de Sobrevivência',category:'Aventura',description:'Explore uma pequena ilha e tente sobreviver coletando recursos.',size:'Pequeno',style:'island',mark:'IS',html:`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ilha de Sobrevivência</title><style>*{box-sizing:border-box}body{margin:0;background:#173b3a;color:#fff;font:16px system-ui;display:grid;place-items:center;min-height:100vh}.box{text-align:center;padding:25px;max-width:440px}.island{margin:20px auto;width:210px;height:150px;border-radius:48% 52% 42% 58%;background:linear-gradient(145deg,#8bc77e,#397d61);display:grid;place-items:center;font-size:55px;box-shadow:0 18px 0 #102b2c}button{border:0;border-radius:9px;padding:12px 18px;background:#f0cf7a;font-weight:700;color:#263a32}p{color:#d4e9d8}</style><div class="box"><h1>Ilha de Sobrevivência</h1><p>Recolha materiais para construir seu abrigo.</p><div class="island">🌴</div><h2 id="wood">Madeira: 0</h2><button onclick="n++;document.getElementById('wood').textContent='Madeira: '+n">Coletar madeira</button><p id="msg">Você está na ilha. Boa sorte!</p></div><script>let n=0;<\/script></html>`},
+ {id:'color-puzzle',name:'Blocos de Cores',category:'Puzzle',description:'Encontre os pares de cores neste pequeno desafio de memória.',size:'Pequeno',style:'puzzle',mark:'BC',html:`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blocos de Cores</title><style>body{margin:0;background:#211d35;color:white;font:16px system-ui;text-align:center;padding:25px}.grid{display:grid;grid-template-columns:repeat(4,65px);gap:9px;justify-content:center;margin:25px auto}.tile{height:65px;border:0;border-radius:10px;background:#7665b5;color:transparent;font-size:22px}.tile.open{color:white;background:#bd91d8}.tile.done{background:#487d70;color:white}button.restart{padding:10px 15px;border:0;border-radius:8px}</style><h1>Blocos de Cores</h1><p>Encontre os pares iguais.</p><div class="grid" id="g"></div><p id="status">Pares encontrados: 0/4</p><button class="restart" onclick="start()">Recomeçar</button><script>let vals=['A','B','C','D','A','B','C','D'],first=null,lock=false,done=0;function start(){vals.sort(()=>Math.random()-.5);first=null;lock=false;done=0;document.getElementById('status').textContent='Pares encontrados: 0/4';document.getElementById('g').innerHTML='';vals.forEach((v,i)=>{let b=document.createElement('button');b.className='tile';b.textContent=v;b.onclick=()=>pick(b,v);document.getElementById('g').appendChild(b)})}function pick(b,v){if(lock||b.classList.contains('open')||b.classList.contains('done'))return;b.classList.add('open');if(!first){first={b,v};return}if(first.v===v){first.b.classList.add('done');b.classList.add('done');done++;document.getElementById('status').textContent='Pares encontrados: '+done+'/4';first=null}else{lock=true;let old=first.b;first=null;setTimeout(()=>{old.classList.remove('open');b.classList.remove('open');lock=false},650)}}start();<\/script></html>`},
+ {id:'mini-racer',name:'Mini Corrida',category:'Corrida',description:'Desvie dos obstáculos e tente alcançar uma pontuação alta.',size:'Pequeno',style:'race',mark:'MR',html:`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mini Corrida</title><style>body{margin:0;background:#25232a;color:white;font:16px system-ui;text-align:center;padding:15px}.road{height:380px;max-width:280px;margin:15px auto;background:repeating-linear-gradient(0deg,#45454c 0 45px,#55555c 45px 90px);border:7px solid #aaa;position:relative;overflow:hidden}.car{position:absolute;bottom:20px;left:calc(50% - 18px);width:36px;height:58px;background:#79d6a2;border-radius:9px}.ob{position:absolute;top:-55px;width:36px;height:55px;background:#e7a36d;border-radius:8px}.controls{display:flex;justify-content:center;gap:20px}button{padding:12px 20px;border:0;border-radius:8px;font-weight:bold}</style><h1>Mini Corrida</h1><div>Pontos: <b id="score">0</b></div><div class="road" id="road"><div class="car" id="car"></div></div><div class="controls"><button onclick="move(-1)">←</button><button onclick="move(1)">→</button></div><p id="msg">Use as setas para desviar.</p><button onclick="start()">Começar / Reiniciar</button><script>let lane=1,score=0,run=false,timer;function move(d){lane=Math.max(0,Math.min(2,lane+d));car.style.left=['18%','calc(50% - 18px)','76%'][lane]}function start(){clearInterval(timer);document.querySelectorAll('.ob').forEach(x=>x.remove());lane=1;score=0;run=true;document.getElementById('score').textContent=0;document.getElementById('msg').textContent='Boa corrida!';timer=setInterval(()=>{score++;document.getElementById('score').textContent=score;let o=document.createElement('div');o.className='ob';o.style.left=['18%','calc(50% - 18px)','76%'][Math.floor(Math.random()*3)];road.appendChild(o);let y=0,fall=setInterval(()=>{y+=7;o.style.top=y+'px';if(y>300){clearInterval(fall);o.remove()}if(y>270&&Math.abs(parseFloat(o.style.left)-parseFloat(car.style.left))<2){clearInterval(fall);clearInterval(timer);run=false;document.getElementById('msg').textContent='Fim de jogo! Pontuação: '+score}},40)},850)}<\/script></html>`}
+];
+let activeCategory='Todos',db;
+function openDB(){return new Promise((resolve,reject)=>{let req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>req.result.createObjectStore(STORE,{keyPath:'id'});req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+function saveGame(game){return new Promise((resolve,reject)=>{let tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(game);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
+function getGames(){return new Promise((resolve,reject)=>{let tx=db.transaction(STORE,'readonly'),req=tx.objectStore(STORE).getAll();req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display='none',2600)}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function render(){let installed=await getGames(),ids=new Set(installed.map(g=>g.id));let q=document.getElementById('search').value.toLowerCase();let all=[...demoGames,...installed.filter(g=>g.userUpload)];let shown=all.filter(g=>(activeCategory==='Todos'||g.category===activeCategory||activeCategory==='Outros'&&!['Aventura','Puzzle','Corrida'].includes(g.category))&&(`${g.name} ${g.description} ${g.category}`).toLowerCase().includes(q));document.getElementById('game-count').textContent=shown.length+' jogos';document.getElementById('game-list').innerHTML=shown.length?shown.map(g=>card(g,ids.has(g.id))).join(''):'<div class="empty">Nenhum jogo encontrado. Tente outra busca.</div>';document.getElementById('library-list').innerHTML=installed.length?installed.map(g=>card(g,true,true)).join(''):'<div class="empty">Sua biblioteca ainda está vazia.<br>Baixe um jogo na página Explorar para começar.</div>'}
+function card(g,installed,inLibrary=false){return `<article class="game-card"><div class="cover ${g.style||'uploaded'}"><span>${esc(g.mark||'JOGO')}</span></div><div class="card-body"><div class="card-title"><h3>${esc(g.name)}</h3><span class="tag">${esc(g.category||'Outros')}</span></div><p>${esc(g.description||'Jogo enviado pela comunidade.')}</p><div class="card-foot"><span class="size">${esc(g.size||'HTML5')}</span>${inLibrary?`<button class="small-btn" onclick="launch('${esc(g.id)}')">Jogar</button>`:installed?`<button class="small-btn" disabled>Baixado</button>`:`<button class="small-btn" onclick="downloadGame('${esc(g.id)}')">Baixar</button>`}</div></div></article>`}
+async function downloadGame(id){let g=demoGames.find(x=>x.id===id);if(!g)return;try{await saveGame({...g,blob:new Blob([g.html],{type:'text/html'})});toast('Jogo adicionado à sua biblioteca.');render()}catch(e){toast('Não foi possível salvar. Verifique o espaço disponível.')}} 
+async function launch(id){let games=await getGames(),g=games.find(x=>x.id===id);if(!g)return toast('Jogo não encontrado na biblioteca.');let url=URL.createObjectURL(g.blob);let win=window.open(url,'_blank');if(!win)toast('Permita abrir novas abas para jogar.');setTimeout(()=>URL.revokeObjectURL(url),60000)}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));render()}));
+document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{activeCategory=b.dataset.category;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));render()}));
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('publish-btn').addEventListener('click',async()=>{let file=document.getElementById('game-file').files[0],name=document.getElementById('game-name').value.trim();if(!file||!name)return toast('Escolha um arquivo HTML e informe o nome do jogo.');if(!file.name.toLowerCase().endsWith('.html'))return toast('Por enquanto, envie somente arquivos .html.');if(file.size>15*1024*1024)return toast('O arquivo é muito grande. Limite desta versão: 15 MB.');try{let id='user-'+Date.now();await saveGame({id,name,category:'Outros',description:'Jogo HTML adicionado por você.',size:(file.size/1024/1024).toFixed(1)+' MB',style:'uploaded',mark:'HTML',blob:file,userUpload:true});document.getElementById('game-file').value='';document.getElementById('game-name').value='';toast('Jogo adicionado à sua biblioteca!');document.querySelector('[data-page="library"]').click()}catch(e){toast('Não foi possível salvar este jogo.')}})
+(async()=>{try{db=await openDB();await render()}catch(e){toast('Seu navegador não permitiu o armazenamento local. Tente abrir no Chrome.')}})();
+</script>
+</body>
+</html>
